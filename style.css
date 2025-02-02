@@ -1,0 +1,199 @@
+/* Google Font */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    gap: 10px;
+}
+
+/* Default Light Mode */
+body {
+    background-color: skyblue;
+    color: #212529;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Default Subtitle Color (Light Mode) */
+#typed-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: green !important;
+}
+
+
+/* Dark Mode Subtitle Color */
+.dark-mode #typed-subtitle {
+    color: #FFD700 !important;
+}
+/* Dark Mode */
+.dark-mode {
+    background-color: #1E1E1E;
+    color: #EAEAEA;
+}
+.dark-mode .card-header {
+    background-color: #333 !important; 
+    color: #ffffff !important; 
+    font-weight: 600;
+}
+
+/* Dark Mode Task Cards */
+.dark-mode .card {
+    background-color: #2C2C2C;
+    color: #EAEAEA;
+    border: 1px solid #444;
+}
+
+/* Dark Mode Buttons */
+.dark-mode .btn {
+    border-color: #fff;
+}
+
+.dark-mode .btn-outline-dark {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Dark Mode Progress Bar */
+.dark-mode .progress {
+    background-color: #444;
+}
+
+.dark-mode .progress-bar {
+    background-color: #17A2B8; /* Bootstrap Info Blue */
+}
+
+/* Dark Mode Input Field */
+.dark-mode input {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+/* Dark Mode Task Buttons */
+.dark-mode .move-btn,
+.dark-mode .edit-btn,
+.dark-mode .delete-btn {
+    border: 1px solid #fff;
+}
+
+/* Dark Mode Icon Colors */
+.dark-mode i {
+    color: #FFD700; /* Gold Icons */
+}
+
+/* Progress Bar with Color Change */
+.progress-container {
+    text-align: center;
+    width: 100%;
+}
+
+/* Dynamic Progress Bar Colors */
+.progress-bar[data-progress="0"] { background: #ff3b30; } /* Red */
+.progress-bar[data-progress="50"] { background: #FFA500; } /* Orange */
+.progress-bar[data-progress="100"] { background: #28a745; } /* Green */
+
+/* Task Cards */
+.task-column {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Task Items */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+}
+
+/* Task Buttons */
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Button Sizes */
+.move-btn, .edit-btn, .delete-btn {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover Effects */
+.move-btn:hover, .edit-btn:hover, .delete-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile Responsive Fix */
+@media (max-width: 600px) {
+    .input-section {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .task-actions {
+        flex-wrap: nowrap;
+        gap: 5px;
+    }
+    .move-btn, .edit-btn, .delete-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .task-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 8px;
+        background: var(--task-bg);
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+
+
+    /* Ensure buttons fit inside the task container */
+    .task-actions {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
+
+    .task-actions button {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+        padding: 4px;
+    }
+
+    /* Fix Task Column Layout */
+    .task-column {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Reduce Progress Bar Height */
+    .progress-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .progress {
+        height: 8px;
+    }
+}
