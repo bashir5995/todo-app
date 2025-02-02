@@ -188,7 +188,7 @@ function updateProgress() {
 // Remove Blinking Cursor in Typed.js
 document.addEventListener("DOMContentLoaded", function () {
     new Typed("#typed-subtitle", {
-        strings: ["Plan Your Day ✍️", "Stay Organized ✅"],
+        strings: ["Plan Your Day ✍️", "Stay Organised ✅"],
         typeSpeed: 80,
         backSpeed: 50,
         backDelay: 1500,
