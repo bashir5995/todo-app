@@ -36,7 +36,7 @@ addTaskBtn.addEventListener("click", () => {
     }
 });
 
-// Create Task with Category Label
+// Create Task
 function createTask(text, category, list) {
     const li = document.createElement("li");
     li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
@@ -53,34 +53,26 @@ function createTask(text, category, list) {
     const actions = document.createElement("div");
     actions.classList.add("task-actions", "d-flex", "gap-2");
 
-    // Move Forward Button
-    const moveForwardBtn = document.createElement("button");
-    moveForwardBtn.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
-    moveForwardBtn.classList.add("btn", "btn-primary", "shadow-sm");
-    moveForwardBtn.addEventListener("click", () => moveTaskForward(li));
-
     // Move Backward Button
     const moveBackwardBtn = document.createElement("button");
     moveBackwardBtn.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
     moveBackwardBtn.classList.add("btn", "btn-primary", "shadow-sm");
     moveBackwardBtn.style.display = "none";
-    moveBackwardBtn.addEventListener("click", () => moveTaskBackward(li));
+
+    // Move Forward Button
+    const moveForwardBtn = document.createElement("button");
+    moveForwardBtn.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+    moveForwardBtn.classList.add("btn", "btn-primary", "shadow-sm");
 
     // Edit Button
     const editBtn = document.createElement("button");
     editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
     editBtn.classList.add("btn", "btn-warning", "shadow-sm");
-    editBtn.addEventListener("click", () => editTask(li));
 
     // Delete Button
     const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     deleteBtn.classList.add("btn", "btn-danger", "shadow-sm");
-    deleteBtn.addEventListener("click", () => {
-        li.remove();
-        saveTasks();
-        updateProgress();
-    });
 
     actions.appendChild(moveBackwardBtn);
     actions.appendChild(moveForwardBtn);
@@ -89,6 +81,8 @@ function createTask(text, category, list) {
     li.appendChild(actions);
 
     document.getElementById(list).appendChild(li);
+
+    attachTaskEvents(li);
     saveTasks();
     updateProgress();
 }
@@ -117,10 +111,40 @@ function moveTaskBackward(task) {
     updateProgress();
 }
 
-// Update Button Visibility Based on Task Status
+// Attach Event Listeners
+function attachTaskEvents(task) {
+    updateTaskButtons(task);
+
+    const buttons = task.querySelectorAll(".btn-primary");
+    const moveBackwardBtn = buttons[0]; // First button
+    const moveForwardBtn = buttons[1]; // Second button
+
+    const editBtn = task.querySelector(".btn-warning");
+    const deleteBtn = task.querySelector(".btn-danger");
+
+    if (moveForwardBtn) {
+        moveForwardBtn.addEventListener("click", () => moveTaskForward(task));
+    }
+    if (moveBackwardBtn) {
+        moveBackwardBtn.addEventListener("click", () => moveTaskBackward(task));
+    }
+    if (editBtn) {
+        editBtn.addEventListener("click", () => editTask(task));
+    }
+    if (deleteBtn) {
+        deleteBtn.addEventListener("click", () => {
+            task.remove();
+            saveTasks();
+            updateProgress();
+        });
+    }
+}
+
+// Update Button Visibility
 function updateTaskButtons(task) {
-    const moveForwardBtn = task.querySelector(".btn-primary:nth-child(2)");
-    const moveBackwardBtn = task.querySelector(".btn-primary:first-child");
+    const buttons = task.querySelectorAll(".btn-primary");
+    const moveBackwardBtn = buttons[0];
+    const moveForwardBtn = buttons[1];
 
     if (task.parentElement.id === "doList") {
         moveBackwardBtn.style.display = "none";
@@ -161,16 +185,8 @@ function loadTasks() {
     doingList.innerHTML = tasks.doingList.join("");
     doneList.innerHTML = tasks.doneList.join("");
 
-    document.querySelectorAll("li").forEach(task => {
-        updateTaskButtons(task);
-        task.querySelector(".btn-primary:nth-child(2)").addEventListener("click", () => moveTaskForward(task));
-        task.querySelector(".btn-primary:first-child").addEventListener("click", () => moveTaskBackward(task));
-        task.querySelector(".btn-warning").addEventListener("click", () => editTask(task));
-        task.querySelector(".btn-danger").addEventListener("click", () => {
-            task.remove();
-            saveTasks();
-            updateProgress();
-        });
+    document.querySelectorAll("#doList li, #doingList li, #doneList li").forEach(task => {
+        attachTaskEvents(task);
     });
 
     updateProgress();
@@ -185,7 +201,16 @@ function updateProgress() {
     progressText.textContent = Math.round(percent) + "% Completed";
 }
 
-// Remove Blinking Cursor in Typed.js
+// Check & Apply Theme
+function checkTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i> Light Mode';
+    }
+}
+
+// Subtitle Effect - Typed.js
 document.addEventListener("DOMContentLoaded", function () {
     new Typed("#typed-subtitle", {
         strings: ["Plan Your Day ✍️", "Stay Organised ✅"],
