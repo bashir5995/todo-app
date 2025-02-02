@@ -1,121 +1,145 @@
-/* Google Font */
+/* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-}
-
-/* Input Section */
-.input-section {
-    display: flex;
-    gap: 10px;
-}
-
-/* Default Light Mode */
-body {
-    background-color: skyblue;
+    background-color: lightblue ;
     color: #212529;
     transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-
-/* Default Subtitle Color (Light Mode) */
+/* Subtitle effect */
 #typed-subtitle {
     font-size: 1.2rem;
     font-weight: 400;
-    color: green !important;
+    color: #2D6A4F !important;
+    min-height: 30px;
+    text-align: center;
 }
 
-
-/* Dark Mode Subtitle Color */
+/* Dark Mode - Subtitle */
 .dark-mode #typed-subtitle {
     color: #FFD700 !important;
 }
+
 /* Dark Mode */
 .dark-mode {
-    background-color: #1E1E1E;
-    color: #EAEAEA;
+    background-color: #121212;
+    color: #F1F1F1;
 }
+
+/* Dark Mode - Section Headers */
 .dark-mode .card-header {
-    background-color: #333 !important; 
-    color: #ffffff !important; 
+    background-color: #333 !important;
+    color: #ffffff !important;
     font-weight: 600;
 }
 
-/* Dark Mode Task Cards */
-.dark-mode .card {
-    background-color: #2C2C2C;
-    color: #EAEAEA;
-    border: 1px solid #444;
+/* Dark Mode - Task Items */
+.dark-mode .list-group-item {
+    background-color: #333;
+    color: #FFD700;
 }
 
-/* Dark Mode Buttons */
-.dark-mode .btn {
-    border-color: #fff;
+/* Fixed Title & Subtitle */
+#typed-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #212529;
+    min-height: 30px;
+    text-align: center;
 }
 
+/* Dark Mode - Subtitle */
+.dark-mode #typed-subtitle {
+    color: #FFD700 !important;
+}
+
+/* Dark Mode - Buttons */
 .dark-mode .btn-outline-dark {
     background-color: #fff;
     color: #333;
 }
 
-/* Dark Mode Progress Bar */
-.dark-mode .progress {
-    background-color: #444;
+.dark-mode .btn-outline-dark:hover {
+    background-color: #f0f0f0;
 }
 
-.dark-mode .progress-bar {
-    background-color: #17A2B8; /* Bootstrap Info Blue */
-}
-
-/* Dark Mode Input Field */
-.dark-mode input {
+.dark-mode .btn-outline-light {
     background-color: #333;
     color: #fff;
-    border: 1px solid #555;
 }
 
-/* Dark Mode Task Buttons */
-.dark-mode .move-btn,
-.dark-mode .edit-btn,
-.dark-mode .delete-btn {
-    border: 1px solid #fff;
+.dark-mode .btn-outline-light:hover {
+    background-color: #555;
 }
 
-/* Dark Mode Icon Colors */
-.dark-mode i {
-    color: #FFD700; /* Gold Icons */
+/* Input Fields */
+.input-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-/* Progress Bar with Color Change */
+/* Category Dropdown */
+#taskCategory {
+    width: 140px;
+    min-width: 120px;
+}
+
+/* Progress Bar */
 .progress-container {
     text-align: center;
-    width: 100%;
+    margin-top: 15px;
 }
 
-/* Dynamic Progress Bar Colors */
-.progress-bar[data-progress="0"] { background: #ff3b30; } /* Red */
-.progress-bar[data-progress="50"] { background: #FFA500; } /* Orange */
-.progress-bar[data-progress="100"] { background: #28a745; } /* Green */
+.progress {
+    height: 10px;
+    border-radius: 10px;
+}
 
-/* Task Cards */
+.progress-fill {
+    background-color: #28a745 !important;
+}
+
+/* Task Sections - Add Space Between Cards */
 .task-column {
     border-radius: 10px;
     overflow: hidden;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Task Items */
+/* Dark Mode - Task Sections */
+.dark-mode .task-column {
+    background-color: #1E1E1E !important;
+    border: 1px solid #444;
+}
+
+.dark-mode .card-header.bg-white {
+    background-color: #2C2C2C !important;
+    color: #F1F1F1 !important;
+}
+
+/* Task List */
 .list-group-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background: white;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Task Actions (Buttons) */
+.task-actions {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
 }
 
 /* Task Buttons */
-.task-actions {
-    display: flex;
-    gap: 8px;
-}
-
-/* Button Sizes */
 .move-btn, .edit-btn, .delete-btn {
     width: 35px;
     height: 35px;
@@ -128,66 +152,61 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
-/* Hover Effects */
 .move-btn:hover, .edit-btn:hover, .delete-btn:hover {
     transform: scale(1.1);
 }
 
+/* Task Category Labels */
+.task-category {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+}
+
+/* Category Colors */
+.category-work {
+    background-color: #007bff;
+    color: white;
+}
+
+.category-personal {
+    background-color: #28a745;
+    color: white;
+}
+
+.category-urgent {
+    background-color: #dc3545;
+    color: white;
+}
+
+.category-other {
+    background-color: #6c757d;
+    color: white;
+}
+
 /* Mobile Responsive Fix */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .task-column {
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
     .input-section {
         flex-direction: column;
         gap: 8px;
     }
+
     .task-actions {
         flex-wrap: nowrap;
         gap: 5px;
     }
+
     .move-btn, .edit-btn, .delete-btn {
         width: 30px;
         height: 30px;
         font-size: 0.9rem;
     }
 
-    .task-list li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: nowrap;
-        gap: 8px;
-        padding: 8px;
-        border-radius: 8px;
-        background: var(--task-bg);
-        margin-bottom: 5px;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-
-
-    /* Ensure buttons fit inside the task container */
-    .task-actions {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        flex-wrap: nowrap;
-        justify-content: flex-end;
-    }
-
-    .task-actions button {
-        width: 30px;
-        height: 30px;
-        font-size: 0.85rem;
-        padding: 4px;
-    }
-
-    /* Fix Task Column Layout */
-    .task-column {
-        width: 100%;
-        padding: 10px;
-    }
-
-    /* Reduce Progress Bar Height */
     .progress-container {
         width: 100%;
         text-align: center;
